@@ -1,0 +1,27 @@
+{
+  "0": {
+    "id": 0,
+    "title": "a book",
+    "price": 10.5,
+    "authors": [
+      "bob",
+      "kmp"
+    ]
+  },
+  "1": {
+    "id": 1,
+    "title": "A book",
+    "price": 2.5,
+    "authors": [
+      "A Person"
+    ]
+  },
+  "3": {
+    "id": 3,
+    "title": "Another other book",
+    "price": 6,
+    "authors": [
+      "The other Man"
+    ]
+  }
+}
