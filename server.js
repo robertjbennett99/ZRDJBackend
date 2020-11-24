@@ -28,6 +28,7 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.json())
 
 const User = require('./Users.js')
+const sent = require('./sentiment')
 
 // Get list of all user IDs
 app.get('/user', (req, res) => {
@@ -57,14 +58,11 @@ app.delete('/user/:id', (req, res) => {
     res.json(true); 
 })
 
-
-
 // Attempt Login
 app.post('/login', (req, res) => {
     let u = User.findByUsername(req.body.username);
     if ( u == null) { 
-        // res.status(404).send("User not found: " + req.params.uName) // handle call to nonexistent book
-        res.json(false); // HERE IS THE PROBLEM
+        res.json(false); 
     } else {
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.setHeader('Access-Control-Allow-Methods', '*');
@@ -79,14 +77,11 @@ app.post('/login', (req, res) => {
 // get user keywords
 app.get('/getkeywords/:uName', (req, res) => {
     let u = User.findByUsername(req.params.uName);
-
     if (u == null) {
-        res.status(404).send("User not found: " + req.params.uName) // handle call to nonexistent book
+        res.status(404).send("User not found: " + req.params.uName) 
         return false;
     }
-
     let keywords = u.keywords
-
     res.json(keywords);
     return;
 })
@@ -95,7 +90,7 @@ app.get('/getkeywords/:uName', (req, res) => {
 app.post('/addkeyword', (req, res) => {
     let u = User.findByUsername(req.body.username);
     if (u == null) {
-        res.status(404).send("User not found: " + req.body.username) // handle call to nonexistent book
+        res.status(404).send("User not found: " + req.body.username) 
         return false;
     } 
     u.keywords.push(req.body.keyword)
@@ -130,7 +125,6 @@ app.get('/usernameexists/:uName', (req, res) => {
     return;
 })
 
-const sent = require('./sentiment')
 
 // news sentiment request
 app.get('/newssentiment/:ticker', async (req, res) => {
@@ -146,7 +140,6 @@ app.get('/newssentiment/:ticker', async (req, res) => {
 // twitter sentiment request
 app.get('/twittersentiment/:ticker', async (req, res) => {
     let s = await sent.getTwitterSentiment(req.params.ticker)
-    // console.log(s)
     if(Number.isNaN(s)) {
         res.json(0)
     } else {
