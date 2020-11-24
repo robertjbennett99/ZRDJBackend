@@ -7,7 +7,7 @@ const fetch = require('node-fetch');
 
 // News
 async function getNewsSentiment(query) {
-    const apiKey = 'd347e0c152474af7a453cf69bbbf6ca0';
+    const apiKey = NEWS_KEY;
 
     let url = `http://newsapi.org/v2/everything?q=${query}&from=2020-11-22&to=2020-11-23&sortBy=popularity&apiKey=${apiKey}`
 
