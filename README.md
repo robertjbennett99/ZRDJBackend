@@ -31,5 +31,8 @@ returns: array of users stored keywords
 GET '/usernameexists/:username'
 returns boolean indicating whether this username is taken
 
+GET '/sentiment/:ticker' 
+returns sentiment score from -5 to 5
+
 
 
