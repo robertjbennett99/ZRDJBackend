@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express();
 
-
 const request = require('request')
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -131,6 +130,35 @@ app.get('/usernameexists/:uName', (req, res) => {
     return;
 })
 
+
+// Sentiment analysis
+const Sentiment = require('sentiment')
+let sentiment = new Sentiment();
+const fetch = require('node-fetch');
+
+async function getSentiment(query) {
+    const apiKey = 'd347e0c152474af7a453cf69bbbf6ca0';
+
+    let url = `http://newsapi.org/v2/everything?q=${query}&from=2020-11-22&to=2020-11-23&sortBy=popularity&apiKey=${apiKey}`
+
+    let average = 0;
+
+    await fetch(url).then((res) => {
+        return res.json();
+    }).then((data) => {
+        data.articles.forEach(article => {
+            average += sentiment.analyze(article.title).score
+        })
+        average = average / data.articles.length
+    })
+    return average;
+}
+
+app.get('/sentiment/:ticker', async (req, res) => {
+    let s = await getSentiment(req.params.ticker)
+    res.json(s)
+    return;
+})
 
 
 
