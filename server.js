@@ -156,7 +156,11 @@ async function getSentiment(query) {
 
 app.get('/sentiment/:ticker', async (req, res) => {
     let s = await getSentiment(req.params.ticker)
-    res.json(s)
+    if(Number.isNaN(s)) {
+        res.json(0)
+    } else {
+        res.json(s)
+    }
     return;
 })
 
