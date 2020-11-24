@@ -1,13 +1,14 @@
 
 const Sentiment = require('sentiment')
 let sentiment = new Sentiment();
+require('dotenv').config();
 
 const fetch = require('node-fetch');
 
 
 // News
 async function getNewsSentiment(query) {
-    const apiKey = NEWS_KEY;
+    const apiKey = process.env.NEWS_KEY;
 
     let url = `http://newsapi.org/v2/everything?q=${query}&from=2020-11-22&to=2020-11-23&sortBy=popularity&apiKey=${apiKey}`
 
