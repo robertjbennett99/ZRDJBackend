@@ -32,7 +32,7 @@ GET - '/twittersentiment/:ticker' -
 returns sentiment score from -5 to 5, determined by recent tweets pulled from Twitter API
 
 
-https://developer.twitter.com/en/docs
+https://developer.twitter.com/en/docs , 
 https://newsapi.org/
 
 
