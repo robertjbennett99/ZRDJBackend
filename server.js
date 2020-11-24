@@ -130,32 +130,23 @@ app.get('/usernameexists/:uName', (req, res) => {
     return;
 })
 
+const sent = require('./sentiment')
 
-// Sentiment analysis
-const Sentiment = require('sentiment')
-let sentiment = new Sentiment();
-const fetch = require('node-fetch');
+// news sentiment request
+app.get('/newssentiment/:ticker', async (req, res) => {
+    let s = await sent.getNewsSentiment(req.params.ticker)
+    if(Number.isNaN(s)) {
+        res.json(0)
+    } else {
+        res.json(s)
+    }
+    return;
+})
 
-async function getSentiment(query) {
-    const apiKey = 'd347e0c152474af7a453cf69bbbf6ca0';
-
-    let url = `http://newsapi.org/v2/everything?q=${query}&from=2020-11-22&to=2020-11-23&sortBy=popularity&apiKey=${apiKey}`
-
-    let average = 0;
-
-    await fetch(url).then((res) => {
-        return res.json();
-    }).then((data) => {
-        data.articles.forEach(article => {
-            average += sentiment.analyze(article.title).score
-        })
-        average = average / data.articles.length
-    })
-    return average;
-}
-
-app.get('/sentiment/:ticker', async (req, res) => {
-    let s = await getSentiment(req.params.ticker)
+// twitter sentiment request
+app.get('/twittersentiment/:ticker', async (req, res) => {
+    let s = await sent.getTwitterSentiment(req.params.ticker)
+    // console.log(s)
     if(Number.isNaN(s)) {
         res.json(0)
     } else {

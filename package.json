@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
     "request": "^2.88.2",
-    "sentiment": "^5.0.2"
+    "sentiment": "^5.0.2",
+    "twitter": "^1.7.1"
   }
 }
