@@ -27,10 +27,10 @@ async function getNewsSentiment(query) {
 // Twitter
 let Twitter = require('twitter');
 let client = new Twitter({
-    consumer_key: 'GMyXsKwEJn60KnyQp79oXJTzU',
-    consumer_secret: 'eWGFND6ea8VBcQ5knaORj7FAPl0oqLFE61lmynUgS83tGeyefK',
-    access_token_key: '2683859232-rSLlu4g0fZASZoofBuPgF1qllAtsKUuJww3eLB0',
-    access_token_secret: 'RzSBkqR0zF30vWncteO392IStZVSfZ2iQBCOLZOFJ4hXS'
+    consumer_key: process.env.CONSUMER_KEY,
+    consumer_secret: process.env.CONSUMER_SECRET,
+    access_token_key: process.env.ACCESS_TOKEN_KEY,
+    access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 
 let average = 0;
