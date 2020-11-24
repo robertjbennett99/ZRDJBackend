@@ -1,43 +1,10 @@
 {
   "1": {
     "id": 1,
-    "username": "user1",
-    "password": "pass1",
-    "keywords": [
-      "ex"
-    ]
-  },
-  "2": {
-    "id": 2,
-    "username": "user2",
-    "password": "pass2",
-    "keywords": [
-      "ex"
-    ]
-  },
-  "3": {
-    "id": 3,
     "username": "robert",
     "password": "bennett",
     "keywords": [
-      "IBM",
-      "APPL",
-      "TTT"
+      "DDIV"
     ]
-  },
-  "4": {
-    "id": 4,
-    "username": "u1",
-    "password": "p1",
-    "keywords": [
-      "IBM",
-      "TTT"
-    ]
-  },
-  "5": {
-    "id": 5,
-    "username": "rob",
-    "password": "ben",
-    "keywords": []
   }
 }
