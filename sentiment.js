@@ -17,10 +17,13 @@ async function getNewsSentiment(query) {
     await fetch(url).then((res) => {
         return res.json();
     }).then((data) => {
+        console.log(data)
         data.articles.forEach(article => {
             average += sentiment.analyze(article.title).score
         })
         average = average / data.articles.length
+    }).catch(function(error) {
+        average = 0;
     })
     return average;
 }
